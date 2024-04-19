@@ -54,7 +54,7 @@
             <div class="row d-flex">
                 <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
                     <div class="w-100">
-                        <span class="subheading">Welcome to Fun Travel</span>
+                        <span class="subheading">Welcome to Happy Travel</span>
                         <h2 class="mb-4">Đã đến lúc bắt đầu cuộc phiêu lưu của bạn</h2>
                         <p>Xách balo lên vào đi với chúng tôi, bạn sẽ có được những trãi nghiệm tuyệt vời với dịch vụ của chúng tôi!</p>
                         <p>Các bạn hãy tìm đến với Fun Travel để được đi đến bất cứ nơi nào trên thế giới. Dành cho người có niềm đam mê bất tận với du lịch!</p>
@@ -118,7 +118,20 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="carousel-destination owl-carousel ftco-animate">
-
+                        @if ($locations->count() > 0)
+                            @foreach($locations as $location)
+                                <div class="item">
+                                    <div class="project-destination">
+                                        <a href="#" class="img" style="background-image: url({{ $location->l_image ? asset(pare_url_file($location->l_image)) :  asset('page/images/place-1.jpg') }});">
+                                            <div class="text">
+                                                <h3>{{ $location->l_name }}</h3>
+                                                <span>{{ $location->tours ? $location->tours->count() : 0 }} Tours</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
