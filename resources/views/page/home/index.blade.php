@@ -147,7 +147,11 @@
                 </div>
             </div>
             <div class="row">
-
+                @if($tours->count() > 0)
+                    @foreach($tours as $tour)
+                        @include('page.common.itemTour', compact('tour'))
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

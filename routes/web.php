@@ -144,4 +144,7 @@ Route::group(['namespace' => 'Page'], function() {
     });
 
     Route::get('/', 'HomeController@index')->name('page.home');
+    Route::get('/tour.html', 'TourController@index')->name('tour');
+    Route::get('book-tour/{id}/{slug}.html', 'TourController@bookTour')->name('book.tour');
+    Route::get('/tour/{id}/{slug}.html', 'TourController@detail')->name('tour.detail');
 });

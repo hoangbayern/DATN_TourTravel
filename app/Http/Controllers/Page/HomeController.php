@@ -13,8 +13,14 @@ class HomeController extends Controller
     public function index()
     {
         $locations = Location::with('tours')->active()->get();
+        $dateFormat = now()->format('Y-m-d');
+        $tours = Tour::orderBy('t_start_date')
+            ->where('t_start_date', '>', $dateFormat)
+            ->where('t_end_date', '>=', $dateFormat)
+            ->limit(6)->get();
         $viewData = [
             'locations' => $locations,
+            'tours' => $tours,
         ];
         return view('page.home.index', $viewData);
     }
