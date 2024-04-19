@@ -60,6 +60,14 @@
                         </a>
                     </li>
                 @endif
+                @if(Auth::user()->can(['full-quyen-quan-ly', 'danh-sach-tour']))
+                    <li class="nav-item">
+                        <a href="{{ route('tour.index') }}" class="nav-link {{ isset($tour_active) ? $tour_active : '' }}">
+                            <i class="nav-icon fas fa-th-large" aria-hidden="true"></i>
+                            <p>Tours</p>
+                        </a>
+                    </li>
+                @endif
                 {{--<li class="nav-item">--}}
                     {{--<a href="{{ route('group.permission.index') }}" class="nav-link {{ isset($group_permission) ? $group_permission : '' }}">--}}
                         {{--<i class="nav-icon fa fa-hourglass" aria-hidden="true"></i>--}}
