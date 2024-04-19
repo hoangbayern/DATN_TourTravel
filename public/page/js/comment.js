@@ -7,7 +7,6 @@ $(function () {
         var tour_id = $(this).attr('tour_id');
         var reply_id = $(this).attr('reply_id');
         var article_id = $(this).attr('article_id');
-        var hotel_id = $(this).attr('hotel_id');
         var content = $('#message').val();
 
         if (content == '') {
@@ -27,7 +26,6 @@ $(function () {
                 tour_id : tour_id,
                 reply_id : reply_id,
                 article_id : article_id,
-                hotel_id : hotel_id,
                 message : content,
             }
         }).done(function (result) {

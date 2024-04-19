@@ -1,4 +1,4 @@
-<form action="" class="search-property-1">
+<form action="{{ route('tour') }}" class="search-property-1">
     <div class="row no-gutters">
         <div class="col-md d-flex">
             <div class="form-group p-4 border-0">

@@ -142,9 +142,10 @@ Route::group(['namespace' => 'Page'], function() {
         Route::get('thay-doi-mat-khau.html', 'AccountController@changePassword')->name('change.password');
         Route::post('change/password', 'AccountController@postChangePassword')->name('post.change.password');
     });
-
     Route::get('/', 'HomeController@index')->name('page.home');
     Route::get('/tour.html', 'TourController@index')->name('tour');
     Route::get('book-tour/{id}/{slug}.html', 'TourController@bookTour')->name('book.tour');
     Route::get('/tour/{id}/{slug}.html', 'TourController@detail')->name('tour.detail');
+    Route::post('/comment', 'CommentController@comment')->name('comment');
+    Route::get('/error', 'TourController@loi')->name('loi.loi');
 });

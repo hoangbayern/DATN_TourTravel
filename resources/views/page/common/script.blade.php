@@ -22,7 +22,7 @@
 <!-- toastr -->
 <script src="{!! asset('admin/plugins/toastr/toastr.min.js') !!}"></script>
 <script>
-
+    var urlComment = '{{ route('comment') }}';
     $(function () {
         toastr.options.closeButton = true;
         @if(session('success'))
