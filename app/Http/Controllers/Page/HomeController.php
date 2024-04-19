@@ -12,7 +12,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('page.home.index');
+        $locations = Location::with('tours')->active()->get();
+        $viewData = [
+            'locations' => $locations,
+        ];
+        return view('page.home.index', $viewData);
     }
 
     public function contact()
