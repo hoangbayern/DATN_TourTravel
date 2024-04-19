@@ -124,3 +124,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
 
     });
 });
+
+Route::group(['namespace' => 'Page'], function() {
+
+    Route::group(['namespace' => 'Auth'], function() {
+        Route::get('/dang-nhap', 'LoginController@login')->name('page.user.account');
+        Route::post('/account/login', 'LoginController@postLogin')->name('account.login');
+        Route::get('/dang-ky-tai-khoan', 'RegisterController@register')->name('user.register');
+        Route::post('/account/register', 'RegisterController@postRegister')->name('post.account.register');
+        Route::get('/dang-xuat.html', 'LoginController@logout')->name('page.user.logout');
+        Route::get('/quen-mat-khau', 'ForgotPasswordController@forgotPassword')->name('page.user.forgot.password');
+    });
+
+    Route::get('/', 'HomeController@index')->name('page.home');
+});
