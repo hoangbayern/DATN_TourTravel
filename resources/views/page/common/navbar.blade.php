@@ -9,6 +9,7 @@
                 <li class="nav-item {{ request()->is('/') ? 'active' : ''}}"><a href="{{ route('page.home') }}" class="nav-link">Trang chủ</a></li>
                 @if (Auth::guard('users')->check())
                     @php $user = Auth::guard('users')->user(); @endphp
+                    <li class="nav-item {{ request()->is('thong-tin-tai-khoan.html') || request()->is('thay-doi-mat-khau.html') || request()->is('danh-sach-tour.html') ? 'active' : '' }}"><a href="{{ route('info.account') }}" class="nav-link" title="{{ $user->name }}">Xin chào : {{ the_excerpt($user->name, 15) }}</a></li>
                     <li class="nav-item {{ request()->is('dang-xuat.html') ? 'active' : '' }}"><a  href="{{ route('page.user.logout') }}" class="nav-link">Đăng xuất</a></li>
                 @else
                     <li class="nav-item {{ request()->is('dang-ky-tai-khoan.html') ? 'active' : '' }}"><a href="{{ route('user.register') }}" class="nav-link">Đăng ký</a></li>

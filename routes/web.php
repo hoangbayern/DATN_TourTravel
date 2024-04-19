@@ -136,5 +136,12 @@ Route::group(['namespace' => 'Page'], function() {
         Route::get('/quen-mat-khau', 'ForgotPasswordController@forgotPassword')->name('page.user.forgot.password');
     });
 
+    Route::group(['middleware' =>['users']], function() {
+        Route::get('thong-tin-tai-khoan.html', 'AccountController@infoAccount')->name('info.account');
+        Route::post('/update/info/account/{id}', 'AccountController@updateInfoAccount')->name('update.info.account');
+        Route::get('thay-doi-mat-khau.html', 'AccountController@changePassword')->name('change.password');
+        Route::post('change/password', 'AccountController@postChangePassword')->name('post.change.password');
+    });
+
     Route::get('/', 'HomeController@index')->name('page.home');
 });
