@@ -111,5 +111,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
             Route::get('/delete/{id}','LocationController@delete')->name('location.delete')->middleware('permission:xoa-dia-diem|full-quyen-quan-ly');
         });
 
+        Route::group(['prefix' => 'tour'], function(){
+            Route::get('/','TourController@index')->name('tour.index')->middleware('permission:danh-sach-tour|full-quyen-quan-ly');
+            Route::get('/create','TourController@create')->name('tour.create')->middleware('permission:them-moi-tour|full-quyen-quan-ly');
+            Route::post('/create','TourController@store');
+
+            Route::get('/update/{id}','TourController@edit')->name('tour.update')->middleware('permission:chinh-sua-tour|full-quyen-quan-ly');
+            Route::post('/update/{id}','TourController@update');
+
+            Route::get('/delete/{id}','TourController@delete')->name('tour.delete')->middleware('permission:xoa-tour|full-quyen-quan-ly');
+        });
+
     });
 });
