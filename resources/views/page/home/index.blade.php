@@ -1,9 +1,9 @@
 @extends('page.layouts.page')
-@section('title', 'Cuộc đời là những chuyến đi | Happy Travel')
+@section('title', 'WebTour | Bamboo Travel')
 @section('style')
 @stop
 @section('content')
-    <div class="hero-wrap js-fullheight" style="background-image: url({{ asset('page/images/bg_5.jpg') }});">
+    <div class="hero-wrap js-fullheight" style="background-image: url({{ asset('page/images/travel_taybac.jpg') }});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
@@ -161,7 +161,7 @@
         <div class="container py-md-5">
             <div class="row py-md-5">
                 <div class="col-md d-flex align-items-center justify-content-center">
-                    <a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
+                    <a href="https://www.youtube.com/watch?v=NSnkb1IAjbE" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                         <span class="fa fa-play"></span>
                     </a>
                 </div>

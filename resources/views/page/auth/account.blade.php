@@ -60,7 +60,7 @@
                                     <input type="file" class="input-file" id="avatar" name="images">
                                 </div>
                                 <div class="col-md-12 text-center vcard bio">
-                                    <img src="{{  $user->avatar ? asset(pare_url_file($user->avatar)) :  asset('page/images/user_default.png') }}" alt="" class="img-circle avatar" width="100%">
+                                    <img src="{{  $user->avatar ? asset(pare_url_file($user->avatar)) :  asset('page/images/user_default.png') }}" alt="" class="img-circle avatar">
                                 </div>
                             </div>
                         </div>
