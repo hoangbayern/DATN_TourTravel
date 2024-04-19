@@ -44,6 +44,14 @@
                     </a>
                 </li>
                 @endif
+                @if(Auth::user()->can(['full-quyen-quan-ly', 'danh-sach-bai-viet']))
+                    <li class="nav-item">
+                        <a href="{{ route('article.index') }}" class="nav-link {{ isset($article_active) ? $article_active : '' }}">
+                            <i class="nav-icon fas fa-file-word" aria-hidden="true"></i>
+                            <p>Bài viết</p>
+                        </a>
+                    </li>
+                @endif
                 {{--<li class="nav-item">--}}
                     {{--<a href="{{ route('group.permission.index') }}" class="nav-link {{ isset($group_permission) ? $group_permission : '' }}">--}}
                         {{--<i class="nav-icon fa fa-hourglass" aria-hidden="true"></i>--}}
