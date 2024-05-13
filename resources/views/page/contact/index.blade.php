@@ -26,7 +26,7 @@
                             <span class="fa fa-map-marker"></span>
                         </div>
                         <h3 class="mb-2">Địa chỉ</h3>
-                        <p> Quận Bình Thạnh, TPHCM</p>
+                        <p> Duy Tien, Ha Nam</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
@@ -35,7 +35,7 @@
                             <span class="fa fa-phone"></span>
                         </div>
                         <h3 class="mb-2">Số điện thoại liên hệ</h3>
-                        <p><a href="tel://1234567920">1234567890</a></p>
+                        <p><a href="tel://0987082683">0987082683</a></p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
@@ -44,7 +44,7 @@
                             <span class="fa fa-paper-plane"></span>
                         </div>
                         <h3 class="mb-2">Địa chỉ email</h3>
-                        <p><a href="mailto:info@yoursite.com">admin@gmail.com</a></p>
+                        <p><a href="mailto:hoangdm2002@gmail.com">hoangdm2002@gmail.com</a></p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
@@ -53,7 +53,7 @@
                             <span class="fa fa-fw fa-facebook-f"></span>
                         </div>
                         <h3 class="mb-2">Website</h3>
-                        <p><a href="#"></a></p>
+                        <p><a href="https://portfolio-hoanghh.vercel.app/" target="_blank">Portfolio</a></p>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
         <div class="container">
             <div class="row block-9">
                 <div class="col-md-12 order-md-last d-flex">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5132741062075!2d106.69907491462253!3d10.771944792324629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f40b9124b2b%3A0x8582d6b6cebc0918!2zNjUgxJDGsOG7nW5nIEh14buzbmggVGjDumMgS2jDoW5nLCBC4bq_biBOZ2jDqSwgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1626710237153!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119490.78142350457!2d105.89003422353161!3d20.625313633798353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135cf554a9671d1%3A0xc2092e8b77356f08!2zRHV5IFRpw6puLCBIw6AgTmFtLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1715620096424!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
