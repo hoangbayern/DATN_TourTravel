@@ -95,7 +95,7 @@
                                 <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-map"></span></div>
                                 <div class="media-body">
                                     <h3 class="heading mb-3">Quản lý vị trí</h3>
-                                    <p>Các bạn hãy tìm đến với Fun Travel để được đi đến bất cứ nơi nào trên thế giới. Dành cho người có niềm đam mê bất tận với du lịch!</p>
+                                    <p>Các bạn hãy tìm đến với Happy Travel để được đi đến bất cứ nơi nào trên thế giới. Dành cho người có niềm đam mê bất tận với du lịch!</p>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +193,7 @@
         </div>
     </section>
 
-
+    @include('page.common.listCommentHot', compact('comments'))
 
     <section class="ftco-section">
         <div class="container">
@@ -204,7 +204,11 @@
                 </div>
             </div>
             <div class="row d-flex">
-
+                @if ($articles->count() > 0)
+                    @foreach($articles as $article)
+                        @include('page.common.itemArticle', compact('article'))
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
