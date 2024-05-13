@@ -39,6 +39,11 @@ class Category extends Model
         return $this->whereNull('c_parent_id')->orderByDesc('id')->get();
     }
 
+    public function news()
+    {
+        return $this->hasMany(Article::class, 'a_category_id', 'id')->where('a_active', 1);
+    }
+
     /**
      * @param $request
      * @param string $id

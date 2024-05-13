@@ -7,20 +7,29 @@ use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\Tour;
 use App\Models\Article;
+use App\Models\Comment;
+use Mail;
 
 class HomeController extends Controller
 {
+    //
     public function index()
     {
+
         $locations = Location::with('tours')->active()->get();
-        $dateFormat = now()->format('Y-m-d');
+        $articles = Article::orderBy('id')->limit(6)->get();
+
+        $Ct = now()->format('Y-m-d');
         $tours = Tour::orderBy('t_start_date')
-            ->where('t_start_date', '>', $dateFormat)
-            ->where('t_end_date', '>=', $dateFormat)
+            ->where('t_start_date', '>', $Ct)
+            ->where('t_end_date', '>=', $Ct)
             ->limit(6)->get();
+        $comments = Comment::with('user')->where('cm_status', 2)->limit(10)->get();
         $viewData = [
             'locations' => $locations,
+            'articles' => $articles,
             'tours' => $tours,
+            'comments' => $comments
         ];
         return view('page.home.index', $viewData);
     }
@@ -32,7 +41,8 @@ class HomeController extends Controller
 
     public function about()
     {
-        return view('page.about.index');
+        $comments = Comment::with('user')->where('cm_status', 2)->limit(10)->get();
+        return view('page.about.index', compact('comments'));
     }
 
     public function transport()

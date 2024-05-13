@@ -148,4 +148,8 @@ Route::group(['namespace' => 'Page'], function() {
     Route::get('/tour/{id}/{slug}.html', 'TourController@detail')->name('tour.detail');
     Route::post('/comment', 'CommentController@comment')->name('comment');
     Route::get('/error', 'TourController@loi')->name('loi.loi');
+    Route::get('/tin-tuc.html', 'ArticleController@index')->name('articles.index');
+    Route::get('/tin-tuc/{id}/{slug}.html', 'ArticleController@detail')->name('articles.detail');
+    Route::get('/ve-chung-toi.html', 'HomeController@about')->name('about.us');
+    Route::get('/lien-he.html', 'HomeController@contact')->name('contact.index');
 });
