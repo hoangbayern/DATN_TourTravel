@@ -122,6 +122,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
             Route::get('/delete/{id}','TourController@delete')->name('tour.delete')->middleware('permission:xoa-tour|full-quyen-quan-ly');
         });
 
+        Route::group(['prefix' => 'book-tour'], function(){
+            Route::get('/', 'BookTourController@index')->name('book.tour.index')->middleware('permission:quan-ly-dat-tour|full-quyen-quan-ly');
+            Route::get('/update/{status}/{id}', 'BookTourController@updateStatus')->name('book.tour.update.status')->middleware('permission:xoa-va-cap-nhat-trang-thai|full-quyen-quan-ly');
+            Route::get('/delete/{id}', 'BookTourController@delete')->name('book.tour.delete')->middleware('permission:xoa-va-cap-nhat-trang-thai|full-quyen-quan-ly');
+        });
+
+        Route::group(['prefix' => 'comments'], function(){
+            Route::get('/', 'CommentController@index')->name('comment.index')->middleware('permission:quan-ly-binh-luan|full-quyen-quan-ly');
+            Route::get('/update/{status}/{id}', 'CommentController@updateStatus')->name('comment.update.status');
+            Route::get('/delete/{id}', 'CommentController@delete')->name('comment.delete')->middleware('permission:|full-quyen-quan-ly');
+        });
+
     });
 });
 
