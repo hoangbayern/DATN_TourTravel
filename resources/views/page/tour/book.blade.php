@@ -63,7 +63,7 @@
             <div class="row block-9">
                 <div class="col-md-6 order-md-last">
                     <p></p>
-                    <form action="#" method="" class="bg-light p-5 contact-form">
+                    <form action="{{ route('post.book.tour', $tour->id) }}" method="post" class="bg-light p-5 contact-form">
                         @csrf
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Họ và tên <sup class="text-danger">(*)</sup></label>
