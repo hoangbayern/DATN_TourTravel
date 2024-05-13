@@ -7,6 +7,10 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ request()->is('/') ? 'active' : ''}}"><a href="{{ route('page.home') }}" class="nav-link">Trang chủ</a></li>
+                <li class="nav-item {{ request()->is('ve-chung-toi.html') ? 'active' : '' }}"><a href="{{ route('about.us') }}" class="nav-link">Giới thiệu</a></li>
+                <li class="nav-item {{ request()->is('tour.html') || request()->is('tour/*') ? 'active' : '' }}"><a href="{{ route('tour') }}" class="nav-link">Tours</a></li>
+                <li class="nav-item {{ request()->is('tin-tuc.html') || request()->is('tin-tuc/*')  ? 'active' : '' }}"><a href="{{ route('articles.index') }}" class="nav-link">Tin tức </a></li>
+                <li class="nav-item {{ request()->is('lien-he.html') ? 'active' : '' }}"><a href="{{ route('contact.index') }}" class="nav-link">Liên hệ</a></li>
                 @if (Auth::guard('users')->check())
                     @php $user = Auth::guard('users')->user(); @endphp
                     <li class="nav-item {{ request()->is('thong-tin-tai-khoan.html') || request()->is('thay-doi-mat-khau.html') || request()->is('danh-sach-tour.html') ? 'active' : '' }}"><a href="{{ route('info.account') }}" class="nav-link" title="{{ $user->name }}">Xin chào : {{ the_excerpt($user->name, 15) }}</a></li>
