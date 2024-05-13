@@ -14,13 +14,13 @@ use Mail;
 
 class AccountController extends Controller
 {
-//    public function __construct(BookTour $bookTour)
-//    {
-//        view()->share([
-//            'status' => $bookTour::STATUS,
-//            'classStatus' => $bookTour::CLASS_STATUS,
-//        ]);
-//    }
+    public function __construct(BookTour $bookTour)
+    {
+        view()->share([
+            'status' => $bookTour::STATUS,
+            'classStatus' => $bookTour::CLASS_STATUS,
+        ]);
+    }
     //
     public function infoAccount()
     {
@@ -71,6 +71,82 @@ class AccountController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Đã xảy ra lỗi không thể đổi mật khẩu');
+        }
+    }
+
+
+    public function cancelTour($id)
+    {
+        \DB::beginTransaction();
+        try {
+
+            \DB::commit();
+
+            return response([
+                'status_code' => 200,
+                'message' => 'Hủy thành công đơn hàng',
+            ]);
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            $code = 404;
+            return response([
+                'status_code' => $code,
+                'message' => 'Không thể hủy đơn hàng',
+            ]);
+        }
+    }
+
+    public function myTour()
+    {
+        $user = Auth::guard('users')->user();
+        $bookTours = BookTour::with(['tour'])->where('b_user_id', $user->id)->orderByDesc('id')->paginate(NUMBER_PAGINATION_PAGE);
+        return view('page.auth.my_tour', compact('bookTours'));
+    }
+
+    public function updateStatus(Request $request, $status, $id)
+    {
+        $bookTour = BookTour::find($id);
+        $numberUser = $bookTour->b_number_adults + $bookTour->b_number_children;
+        if (!$bookTour) {
+            return redirect()->back()->with('error', 'Dữ liệu không tồn tại');
+        }
+
+        \DB::beginTransaction();
+        if($status != $bookTour->b_status){
+            try {
+                $bookTour->b_status = $status;
+                if ($bookTour->save()) {
+                    if ($status == 5 ) {
+                        $tour = Tour::find($bookTour->b_tour_id);
+                        $numberRegistered = $tour->t_number_registered - $numberUser;
+                        $tour->t_number_registered = $numberRegistered > 0 ? $numberRegistered : 0;
+                        $tour->save();
+
+                    }
+                }
+                $tour = Tour::find($bookTour->b_tour_id);
+                $user = User::find($bookTour->b_user_id);
+//                $mailuser =$user->email;
+//                Mail::send('emailhuy',compact('user','bookTour','tour'),function($email) use($mailuser){
+//                    $email->subject('Xác nhận HUỶ BOOKING');
+//                    $email->to($mailuser);
+//                });
+                \DB::commit();
+
+                return response([
+                    'status_code' => 200,
+                    'message' => 'Hủy thành công đơn hàngg',
+                ]);
+            } catch (\Exception $exception) {
+                \DB::rollBack();
+                $code = 404;
+                return response([
+                    'status_code' => $code,
+                    'message' => 'Không thể hủy đơn hàng',
+                ]);
+            }}
+        else {
+            return redirect()->back()->with('error', 'Trạng thái đã tồn tại');
         }
     }
 }

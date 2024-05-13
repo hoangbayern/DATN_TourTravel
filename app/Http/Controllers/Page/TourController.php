@@ -9,10 +9,11 @@ use App\Models\User;
 use App\Models\BookTour;
 use App\Http\Requests\BookTourRequest;
 use Illuminate\Support\Facades\Auth;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class TourController extends Controller
 {
+    //
     public function index(Request $request)
     {
         $tours = Tour::with('user');
@@ -38,10 +39,10 @@ class TourController extends Controller
 
         $Ct= now()->format('Y-m-d');
         $tours = $tours->orderBy('t_status')
-	    ->where('t_start_date','>',$Ct)
-        ->where('t_end_date','>=',$Ct)
-        ->where('t_status',1)
-        ->paginate(NUMBER_PAGINATION_PAGE);
+            ->where('t_start_date','>',$Ct)
+            ->where('t_end_date','>=',$Ct)
+            ->where('t_status',1)
+            ->paginate(NUMBER_PAGINATION_PAGE);
 
         $viewData = [
             'tours' => $tours
@@ -82,7 +83,40 @@ class TourController extends Controller
 
     public function postBookTour(BookTourRequest $request, $id)
     {
+        $tour = Tour::find($id);
+        $numberUser = $request->b_number_adults + $request->b_number_children + $request->b_number_child6 + $request->b_number_child2;
+        if (($tour->t_number_registered + $numberUser) > $tour->t_number_guests) {
+            return redirect()->back()->with('error', 'Số lượng người đăng ký đã vượt quá giới hạn');
+        }
 
+        \DB::beginTransaction();
+        try {
+            $params = $request->except(['_token']);
+            $user = Auth::guard('users')->user();
+            $params['b_tour_id'] = $id;
+            $params['b_user_id'] = $user->id;
+            $params['b_status'] = 1;
+            $params['b_price_adults'] = $tour->t_price_adults - ($tour->t_price_adults * $tour->t_sale / 100);
+            $params['b_price_children'] = $tour->t_price_children - ($tour->t_price_children * $tour->t_sale / 100);
+            $params['b_price_child6'] = ($tour->t_price_children - ($tour->t_price_children * $tour->t_sale / 100)) * 50 / 100;
+            $params['b_price_child2'] = ($tour->t_price_children - ($tour->t_price_children * $tour->t_sale / 100)) * 25 / 100;
+            $book = BookTour::create($params);
+            if ($book) {
+                $tour->t_follow = $tour->t_follow + $numberUser;
+                $tour->save();
+            }
+            \DB::commit();
+
+//            $mail = $user->email;
+//            Mail::send('emailtn', compact('book', 'tour', 'user'), function ($email) use ($mail) {
+//                $email->subject('Thông tin xác nhận đơn Booking');
+//                $email->to($mail);
+//            });
+            return redirect()->route('page.home')->with('success', 'Cám ơn bạn đã đặt tour chúng tôi sẽ liên hệ sớm để xác nhận.');
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu dữ liệu');
+        }
     }
     public function loi()
     {
