@@ -25,7 +25,30 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $users = User::with('userRole');
 
+        if ($request->name) {
+            $users->where('name', 'like', '%'.$request->name.'%');
+        }
+        if ($request->email) {
+            $users->where('email', 'like', '%'.$request->email.'%');
+        }
+        if ($request->phone) {
+            $users->where('phone', 'like', '%'.$request->phone.'%');
+        }
+
+        if ($request->user_id) {
+            $users->where('user_id', $request->user_id);
+
+        }
+
+        if ($request->role_id) {
+            $listUser = \DB::table('role_user')->where('role_id', $request->role_id)->pluck('user_id');
+            $users->whereIn('id', $listUser);
+        }
+
+        $users = $users->orderByDesc('id')->paginate(NUMBER_PAGINATION);
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -35,7 +58,8 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        //
+        return view('admin.user.create');
     }
 
     /**
@@ -46,7 +70,30 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        //
+        \DB::beginTransaction();
+        try {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->password = bcrypt($request->password);
+            $user->status = $request->status;
+            if (isset($request->images) && !empty($request->images)) {
+                $image = upload_image('images');
+                if ($image['code'] == 1)
+                    $user->avatar = $image['name'];
+            }
+            if ($user->save()) {
+                \DB::table('role_user')->insert(['role_id'=> $request->role, 'user_id'=> $user->id]);
+            }
 
+            \DB::commit();
+            return redirect()->back()->with('success','Thêm mới thành công');
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu dữ liệu');
+        }
     }
 
 
@@ -58,7 +105,23 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        //
+        $user = User::with([
+            'userRole' => function($userRole)
+            {
+                $userRole->select('*');
+            }
+        ])->find($id);
+        $listRoleUser = \DB::table('role_user')->where('user_id', $id)->first();
+        if(!$user) {
+            return redirect()->route('get.list.user')->with('danger', 'Quyền không tồn tại');
+        }
 
+        $viewData = [
+            'user' => $user,
+            'listRoleUser' => $listRoleUser
+        ];
+        return view('admin.user.create', $viewData);
     }
 
     /**
@@ -70,7 +133,31 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+        //
+        \DB::beginTransaction();
+        try {
+            $user = User::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->status = $request->status;
 
+            if (isset($request->images) && !empty($request->images)) {
+                $image = upload_image('images');
+                if ($image['code'] == 1)
+                    $user->avatar = $image['name'];
+            }
+            if ($user->save()) {
+                \DB::table('role_user')->where('user_id', $id)->delete();
+                \DB::table('role_user')->insert(['role_id'=> $request->role, 'user_id'=> $user->id]);
+            }
+
+            \DB::commit();
+            return redirect()->back()->with('success','Chỉnh sửa thành công');
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu dữ liệu');
+        }
     }
 
     /**
@@ -81,6 +168,19 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-
+        //
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->back()->with('error', 'Dữ liệu không tồn tại');
+        }
+        \DB::beginTransaction();
+        try {
+            $user->delete();
+            \DB::commit();
+            return redirect()->back()->with('success','Đã xóa thành công');
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu dữ liệu');
+        }
     }
 }

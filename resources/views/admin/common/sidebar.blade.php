@@ -105,6 +105,14 @@
                     </a>
                 </li>
                  @endif
+                @if(Auth::user()->can(['full-quyen-quan-ly', 'danh-sach-nguoi-dung']))
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link {{ isset($user_active) ? $user_active : '' }}">
+                            <i class="nav-icon fa fa-fw fa-user" aria-hidden="true"></i>
+                            <p> Người dùng </p>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
