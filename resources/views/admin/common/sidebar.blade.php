@@ -68,6 +68,23 @@
                         </a>
                     </li>
                 @endif
+                @if(Auth::user()->can(['full-quyen-quan-ly', 'quan-ly-dat-tour']))
+                    <li class="nav-item">
+                        <a href="{{ route('book.tour.index') }}" class="nav-link {{ isset($book_tour_active) ? $book_tour_active : '' }}">
+                            <i class="nav-icon fas fa-cart-plus" aria-hidden="true"></i>
+                            <p>Danh sách đặt tour</p>
+                        </a>
+                    </li>
+                @endif
+                @if(Auth::user()->can(['full-quyen-quan-ly', 'quan-ly-binh-luan']))
+                    <li class="nav-item">
+                        <a href="{{ route('comment.index') }}" class="nav-link {{ isset($comment_active) ? $comment_active : '' }}">
+                            <i class="nav-icon fas fa-comments" aria-hidden="true"></i>
+
+                            <p>Quản lý bình luận </p>
+                        </a>
+                    </li>
+                @endif
                 {{--<li class="nav-item">--}}
                     {{--<a href="{{ route('group.permission.index') }}" class="nav-link {{ isset($group_permission) ? $group_permission : '' }}">--}}
                         {{--<i class="nav-icon fa fa-hourglass" aria-hidden="true"></i>--}}
