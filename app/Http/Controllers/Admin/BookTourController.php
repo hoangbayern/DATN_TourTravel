@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BookTour;
 use App\Models\Tour;
 use App\Models\User;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class BookTourController extends Controller
 {
@@ -96,21 +96,21 @@ class BookTourController extends Controller
                     $tour->t_follow= $tour->t_follow - $numberUser;
                     $tour->save();
                     $user = User::find($bookTour->b_user_id);
-//                    $mailuser =$user->email;
-//                    Mail::send('emailhuy',compact('user','bookTour','tour'),function($email) use($mailuser){
-//                        $email->subject('Xác nhận HUỶ BOOKING');
-//                        $email->to($mailuser);
-//                    });
+                    $mailuser =$user->email;
+                    Mail::send('emailhuy',compact('user','bookTour','tour'),function($email) use($mailuser){
+                        $email->subject('Xác nhận HUỶ BOOKING');
+                        $email->to($mailuser);
+                    });
                     }else {
                         $tour = Tour::find($bookTour->b_tour_id);
                     $tour->t_number_registered = $tour->t_number_registered - $numberUser;
                     $tour->save();
                     $user = User::find($bookTour->b_user_id);
-//                    $mailuser =$user->email;
-//                    Mail::send('emailhuy',compact('user','bookTour','tour'),function($email) use($mailuser){
-//                        $email->subject('Xác nhận HUỶ BOOKING');
-//                        $email->to($mailuser);
-//                    });
+                    $mailuser =$user->email;
+                    Mail::send('emailhuy',compact('user','bookTour','tour'),function($email) use($mailuser){
+                        $email->subject('Xác nhận HUỶ BOOKING');
+                        $email->to($mailuser);
+                    });
                     }
 
                 }
@@ -119,11 +119,11 @@ class BookTourController extends Controller
                     if($temp == 2) {
                         $tour = Tour::find($bookTour->b_tour_id);
                         $user = User::find($bookTour->b_user_id);
-//                        $mailuser =$user->email;
-//                        Mail::send('emailtt',compact('user','bookTour','tour'),function($email) use($mailuser){
-//                            $email->subject('Xác nhận thanh toán');
-//                            $email->to($mailuser);
-//                        });
+                        $mailuser =$user->email;
+                        Mail::send('emailtt',compact('user','bookTour','tour'),function($email) use($mailuser){
+                            $email->subject('Xác nhận thanh toán');
+                            $email->to($mailuser);
+                        });
                     }
                     if($temp == 1) {
 
@@ -132,11 +132,11 @@ class BookTourController extends Controller
                         $tour->t_follow = $tour->t_follow - $numberUser;
                         $tour->save();
                         $user = User::find($bookTour->b_user_id);
-//                        $mailuser =$user->email;
-//                        Mail::send('emailtt',compact('user','bookTour','tour'),function($email) use($mailuser){
-//                            $email->subject('Xác nhận thanh toán');
-//                            $email->to($mailuser);
-//                        });
+                        $mailuser =$user->email;
+                        Mail::send('emailtt',compact('user','bookTour','tour'),function($email) use($mailuser){
+                            $email->subject('Xác nhận thanh toán');
+                            $email->to($mailuser);
+                        });
                     }
 
                 }
@@ -147,11 +147,11 @@ class BookTourController extends Controller
                     $tour->t_follow = $tour->t_follow - $numberUser;
                     $tour->save();
                     $user = User::find($bookTour->b_user_id);
-//                    $mailuser =$user->email;
-//                    Mail::send('email',compact('user','bookTour','tour'),function($email) use($mailuser){
-//                        $email->subject('Xác nhận booking');
-//                        $email->to($mailuser);
-//                    });
+                    $mailuser =$user->email;
+                    Mail::send('email',compact('user','bookTour','tour'),function($email) use($mailuser){
+                        $email->subject('Xác nhận booking');
+                        $email->to($mailuser);
+                    });
                 }
             }
 
