@@ -39,8 +39,8 @@ return [
             'host' => 'smtp.gmail.com',
             'port' => 587,
             'encryption' => 'tls',
-            'username' =>'laptrinhvlog3863@gmail.com',
-            'password' => 'hfqdtdciurzdqyfi',
+            'username' =>'h01699149692@gmail.com',
+            'password' => 'ihwtomxbbkkswrxr',
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => 'kq909981@gmail.com',
-        'name' =>'FunTravel (Du lịch Việt)',
+        'address' => 'admin@gmail.com',
+        'name' =>'Bamboo Tour (Du lịch Việt)',
     ],
 
     /*

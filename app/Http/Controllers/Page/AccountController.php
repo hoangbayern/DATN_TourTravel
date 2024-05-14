@@ -10,7 +10,7 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Models\User;
 use App\Models\BookTour;
 use App\Models\Tour;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
@@ -126,11 +126,11 @@ class AccountController extends Controller
                 }
                 $tour = Tour::find($bookTour->b_tour_id);
                 $user = User::find($bookTour->b_user_id);
-//                $mailuser =$user->email;
-//                Mail::send('emailhuy',compact('user','bookTour','tour'),function($email) use($mailuser){
-//                    $email->subject('Xác nhận HUỶ BOOKING');
-//                    $email->to($mailuser);
-//                });
+                $mailuser =$user->email;
+                Mail::send('emailhuy',compact('user','bookTour','tour'),function($email) use($mailuser){
+                    $email->subject('Xác nhận HUỶ BOOKING');
+                    $email->to($mailuser);
+                });
                 \DB::commit();
 
                 return response([
