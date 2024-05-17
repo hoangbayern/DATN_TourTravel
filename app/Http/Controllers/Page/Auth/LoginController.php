@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -70,5 +73,38 @@ class LoginController extends Controller
     {
         Auth::guard('users')->logout();
         return redirect()->route('page.home');
+    }
+
+    public function getGoogleSignInUrl()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function loginCallback(Request $request)
+    {
+        try {
+            $state = $request->input('state');
+
+            parse_str($state, $result);
+            $googleUser = Socialite::driver('google')->stateless()->user();
+
+            $user = User::where('email', $googleUser->email)->first();
+            if ($user) {
+                \auth()->login($googleUser);
+                throw new \Exception(__('google sign in email existed'));
+            }
+            $user = User::create(
+                [
+                    'email' => $googleUser->email,
+                    'name' => $googleUser->name,
+                    'google_id'=> $googleUser->id,
+                    'password'=> Hash::make('12345678'),
+                ]
+            );
+            Auth::login($user);
+            return redirect()->route('page.home')->with('success', 'Đăng nhập thành công.');
+        } catch (\Exception $exception) {
+            return view('page.auth.login');
+        }
     }
 }
