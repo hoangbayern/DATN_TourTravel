@@ -5,13 +5,12 @@
 @section('seo')
 @stop
 @section('content')
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ asset('/page/images/bg_1.jpg') }});">
-        <div class="overlay"></div>
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({{ asset('/page/images/bg_1.jpg') }}); height: 205px">
         <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('page.home') }}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Danh sách <i class="fa fa-chevron-right"></i></span></p>
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center" style="margin-top: 105px">
                     <h1 class="mb-0 bread">Đặt tour</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('page.home') }}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Danh sách <i class="fa fa-chevron-right"></i></span></p>
                 </div>
             </div>
         </div>
@@ -50,7 +49,7 @@
                                             <p><b>Số trẻ em (2-6 tuổi) :</b> {{ $tour->b_number_child6 }} - <b>Thành tiền</b>: {{ number_format($tour->b_number_child6*$tour->b_price_child6, 0,',','.') }} vnd</p>
                                             <p><b>Số trẻ em (dưới 2 tuổi) :</b> {{ $tour->b_number_child2 }} - <b>Thành tiền</b>: {{ number_format($tour->b_number_child2*$tour->b_price_child2, 0,',','.') }} vnd</p>
 
-                                           
+
                                             @php
                                             $totalPrice = ($tour->b_number_adults*$tour->b_price_adults)+($tour->b_number_children*$tour->b_price_children)+($tour->b_number_child6*$tour->b_price_child6)+($tour->b_number_child2*$tour->b_price_child2)
                                             @endphp

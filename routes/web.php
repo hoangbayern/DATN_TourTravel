@@ -167,5 +167,5 @@ Route::group(['namespace' => 'Page'], function() {
     Route::get('/tin-tuc/{id}/{slug}.html', 'ArticleController@detail')->name('articles.detail');
     Route::get('/ve-chung-toi.html', 'HomeController@about')->name('about.us');
     Route::get('/lien-he.html', 'HomeController@contact')->name('contact.index');
-    Route::get('/dia-diem/{id}', 'LocationController@index')->name('location');
+    Route::get('/dia-diem/{id}/{slug}', 'LocationController@index')->name('location');
 });

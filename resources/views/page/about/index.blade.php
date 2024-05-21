@@ -3,13 +3,12 @@
 @section('style')
 @stop
 @section('content')
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ asset('/page/images/bg_1.jpg') }});">
-        <div class="overlay"></div>
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({{ asset('/page/images/bg_1.jpg') }}); height: 210px">
         <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('page.home') }}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Giới thiệu<i class="fa fa-chevron-right"></i></span></p>
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center" style="margin-top: 105px">
                     <h1 class="mb-0 bread">Giới thiệu</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('page.home') }}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Giới thiệu<i class="fa fa-chevron-right"></i></span></p>
                 </div>
             </div>
         </div>
@@ -23,7 +22,7 @@
                         <h2 class="mb-4">Đã đến lúc bắt đầu cuộc phiêu lưu của bạn</h2>
                         <p>Xách balo lên vào đi với chúng tôi, bạn sẽ có được những trãi nghiệm tuyệt vời với dịch vụ của chúng tôi!</p>
                         <p>Các bạn hãy tìm đến với Fun Travel để được đi đến bất cứ nơi nào trên thế giới. Dành cho người có niềm đam mê bất tận với du lịch!</p>
-                        
+
                     </div>
                 </div>
                 <div class="col-md-6">
