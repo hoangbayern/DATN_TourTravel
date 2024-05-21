@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
+    return response()->json([
+        'message' => 'Clear Cache!',
+    ]);
     // return what you want
 });
 
@@ -146,6 +149,8 @@ Route::group(['namespace' => 'Page'], function() {
         Route::post('/account/register', 'RegisterController@postRegister')->name('post.account.register');
         Route::get('/dang-xuat.html', 'LoginController@logout')->name('page.user.logout');
         Route::get('/quen-mat-khau', 'ForgotPasswordController@forgotPassword')->name('page.user.forgot.password');
+        Route::get('/redirect', 'LoginController@getGoogleSignInUrl')->name('admin.getGoogleSignInUrl');
+        Route::get('/callback', 'LoginController@loginCallback')->name('admin.loginCallback');
     });
 
     Route::group(['middleware' =>['users']], function() {

@@ -40,14 +40,32 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- /.col -->
-                        <div class="col-12">
-                            @csrf
-                            <button type="submit" class="btn btn-primary btn-block col-6" style="margin: auto;">Đăng nhập</button>
+                        <div class="col-6">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
                         </div>
-                        <!-- /.col -->
+
+                        <div class="col-6">
+                            @csrf
+                            <button type="submit" class="btn btn-primary btn-block col-12" style="margin: auto;">Đăng nhập</button>
+                        </div>
+
                     </div>
                 </form>
+
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="{{ route('admin.getGoogleSignInUrl') }}" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="{{ route('admin.getGoogleSignInUrl') }}" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>
             </div>
             <!-- /.login-card-body -->
         </div>
