@@ -16,6 +16,7 @@ class LocationController extends Controller
         $location = Location::where('id', $id)
             ->with('tours')
             ->first();
+        $locations = Location::all();
 
         // Nếu không tìm thấy location, bạn có thể trả về một thông báo lỗi hoặc chuyển hướng
         if (!$location) {
@@ -69,7 +70,8 @@ class LocationController extends Controller
 
         // Chuẩn bị dữ liệu và truyền vào view
         $viewData = [
-            'tours' => $paginatedTours
+            'tours' => $paginatedTours,
+            'locations' => $locations,
         ];
 
         return view('page.location.index', $viewData);
