@@ -99,9 +99,10 @@ class LoginController extends Controller
                     'name' => $googleUser->name,
                     'google_id'=> $googleUser->id,
                     'password'=> Hash::make('12345678'),
+                    'avatar' => $googleUser->avatar,
                 ]
             );
-            Auth::login($user);
+            Auth::guard('users')->attempt(['email' => $googleUser->email, 'password' => '12345678']);
             return redirect()->route('page.home')->with('success', 'Đăng nhập thành công.');
         } catch (\Exception $exception) {
             return view('page.auth.login');
