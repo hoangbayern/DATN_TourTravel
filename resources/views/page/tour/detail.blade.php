@@ -5,13 +5,12 @@
 @section('seo')
 @stop
 @section('content')
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ asset('/page/images/bg_1.jpg') }});">
-        <div class="overlay"></div>
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({{ asset('/page/images/bg_1.jpg') }}); height: 205px">
         <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('page.home') }}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Tours <i class="fa fa-chevron-right"></i></span></p>
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center" style="margin-top: 105px">
                     <h1 class="mb-0 bread">Tours</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('page.home') }}">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Tours <i class="fa fa-chevron-right"></i></span></p>
                 </div>
             </div>
         </div>
@@ -68,14 +67,14 @@
                             <tr>
                                 <td width="30%">Giá trẻ em</td>
                                 <td> {{ number_format($tour->t_price_children-($tour->t_price_children*$tour->t_sale/100),0,',','.') }} vnd</td>
-                               
+
                             </tr>
                         </table>
                         <h2 class="mb-3 mt-5">#2. Lịch trình</h2>
                         <p >
                             {!! $tour->t_description !!}
                         </p>
-                      
+
                         <h2 class="mb-3 mt-5">#3. Giới thiệu tour</h2>
                         <p>
                             {!! $tour->t_content !!}
@@ -114,9 +113,9 @@
                     <div class="register-tour">
                         <p class="price-tour">Giá từ : <span>{{ number_format($tour->t_price_adults-($tour->t_price_adults*$tour->t_sale/100),0,',','.') }}</span> vnd</p>
                         @if($tour->t_number_registered<$tour->t_number_guests)
-                        
+
                         <a href="{{ route('book.tour', ['id' => $tour->id, 'slug' => safeTitle($tour->t_title)]) }}" class="btn btn-primary py-3 px-4" style="width: 80%">Đặt Tour</a>
-                    
+
                     @else
                                          <a href="{{ route('loi.loi') }}" class="btn btn-primary py-3 px-4" style="width: 80%">Đã hết chỗ</a>
 

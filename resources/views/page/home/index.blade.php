@@ -122,7 +122,7 @@
                             @foreach($locations as $location)
                                 <div class="item">
                                     <div class="project-destination">
-                                        <a href="#" class="img" style="background-image: url({{ $location->l_image ? asset(pare_url_file($location->l_image)) :  asset('page/images/place-1.jpg') }});">
+                                        <a href="{{ route('location', ['id' => $location->id, 'slug' => safeTitle($location->l_name)]) }}" class="img" style="background-image: url({{ $location->l_image ? asset(pare_url_file($location->l_image)) :  asset('page/images/place-1.jpg') }});">
                                             <div class="text">
                                                 <h3>{{ $location->l_name }}</h3>
                                                 <span>{{ $location->tours ? $location->tours->count() : 0 }} Tours</span>
