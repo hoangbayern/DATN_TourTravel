@@ -1,6 +1,9 @@
 @extends('page.layouts.page')
 @section('title', 'Liên hệ')
 @section('style')
+    <!-- Add any additional styles if needed -->
+    <style>
+    </style>
 @stop
 @section('seo')
 @stop
@@ -58,6 +61,7 @@
             </div>
         </div>
     </section>
+
     <section class="ftco-section contact-section ftco-no-pt">
         <div class="container">
             <div class="row block-9">
@@ -67,6 +71,53 @@
             </div>
         </div>
     </section>
+
+    <!-- Contact Form Section -->
+    <section class="ftco-section contact-section ftco-no-pt">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <h2 class="mb-4">Liên hệ với chúng tôi</h2>
+                </div>
+            </div>
+            <div class="row block-9">
+                <div class="col-md-6 order-md-last d-flex">
+                    <form action="#" method="POST" class="bg-light p-5 contact-form">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" placeholder="Chủ đề" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" cols="30" rows="7" class="form-control" placeholder="Nội dung" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Gửi" class="btn btn-primary py-3 px-5">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <h2 class="tourName">Bamboo Travel &amp; Du Lịch Việt</h2>
+                    <div class="text-center mb-2 text-xl">LIÊN HỆ ĐẶT PHÒNG</div>
+                    <div class="beWrap text-center mb-3">
+                        <div class="be"><span class="fa fa-envelope text-center"><a href="mailto:hoangdm2002@gmail.com">hoangdm2002@gmail.com</a></span></div>
+                    </div>
+                    <div class="phoneWrap">
+                        <div class="hotline"><a href="tel:0987082683">0987082683</a></div>
+                    </div> <div class="img text-center"><img src="//dulichviet.com.vn/images/form/2.jpg" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="ftco-intro ftco-section ftco-no-pt">
         <div class="container">
             <div class="row justify-content-center">
@@ -75,7 +126,7 @@
                         <div class="overlay"></div>
                         <h2>Chào mừng bạn đến với Fun Travel</h2>
                         <p>Chúng tôi sẽ đem đến trãi nghiệm các tour du lịch tốt nhất dành cho bạn</p>
-                        <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Liên hệ qua Messager của chúng tôi</a></p>
+                        <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Liên hệ qua Messenger của chúng tôi</a></p>
                     </div>
                 </div>
             </div>
