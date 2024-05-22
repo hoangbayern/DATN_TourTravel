@@ -8812,7 +8812,7 @@ h1, h2, h3, h4, h5,
     color: rgba(0, 0, 0, 0.1); }
     @media (max-width: 767.98px) {
       .search-property-1 .form-group .icon {
-        right: 10px; 
+        right: 10px;
         display: block;
         float: left;
         width: 10%;
@@ -8955,9 +8955,9 @@ h1, h2, h3, h4, h5,
 .project-destination:hover .text span {
   padding-right: 20px;
   background: #f15d30; }
-  
-    
-     
+
+
+
 .project-wrap {
   margin-bottom: 30px; }
   .project-wrap .img {
@@ -8999,7 +8999,7 @@ h1, h2, h3, h4, h5,
         border-style: solid;
         border-width: 8px 0 0 8px;
         border-color: transparent transparent transparent #c7390d; }
-       
+
   .project-wrap.hotel .img {
     height: 320px; }
   .project-wrap .text {
@@ -10210,3 +10210,185 @@ textarea.form-control {
 .ftco-section img{
   width: 100%;
 }
+
+/*location tour item*/
+
+.no-tours {
+    text-align: center;
+    font-size: 65px;
+    color: #555;
+    margin: 50px 0;
+}
+.no-tours p {
+    margin-bottom: 20px;
+}
+.no-tours a {
+    color: #007bff;
+    text-decoration: underline;
+}
+.vnt-tour .wrapSearch {
+    margin-bottom: 20px !important; /* Adjust the margin as needed */
+}
+
+.vnt-tour .mda-box-item {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.vnt-tour .daySearch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ed0080; /* Purple background */
+    color: #fff; /* White text */
+    padding: 10px;
+    margin-right: 15px;
+    flex-direction: column;
+}
+
+.vnt-tour .day {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.vnt-tour .moyear {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.vnt-tour .divider {
+    width: 100%;
+    height: 1px;
+    background-color: #fff; /* White line */
+    margin: 5px 0;
+}
+
+.vnt-tour .mda-box-img {
+    position: relative;
+    margin-right: 15px;
+}
+
+.vnt-tour .mda-box-img img {
+    width: 320px;
+    height: 100%;
+}
+
+.vnt-tour .mda-box-lb {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px;
+}
+
+.vnt-tour .mda-box-fig {
+    flex: 1;
+}
+
+.vnt-tour .mda-box-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.vnt-tour .mda-time {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mda-box-item .mda-time span {
+    border: 1px solid #555;
+    color: #fff;
+    float: left;
+    display: block;
+    padding: 5px 10px;
+    background-color: #555;
+}
+
+.mda-box-item .mda-time span:first-child {
+    border: 1px solid #ddd;
+    background-color: #e7e7e7;
+    color: #555;
+}
+
+.vnt-tour .mda-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vnt-tour .mda-box-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.vnt-tour .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.vnt-tour .linkTo a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.vnt-tour .linkTo a:hover {
+    text-decoration: underline;
+}
+
+.vnt-tour .mda-box-img .img-tour .short-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.vnt-tour .mda-box-img:hover .short-description {
+    opacity: 1;
+}
+
+.vnt-tour .mda-box-img .img-tour .price {
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    display: inline-block;
+    background: #f15d30;
+    color: #fff;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+.vnt-tour .mda-box-img .img-tour .price:after, .vnt-tour .mda-box-img .img-tour .price:before {
+    position: absolute;
+    top: 0;
+    content: ''; }
+.vnt-tour .mda-box-img .img-tour .price:after {
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 8px 8px;
+    border-color: transparent transparent #c7390d transparent; }
+.vnt-tour .mda-box-img .img-tour .price:before {
+    width: 0;
+    right: -8px;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 0 0 8px;
+    border-color: transparent transparent transparent #c7390d; }

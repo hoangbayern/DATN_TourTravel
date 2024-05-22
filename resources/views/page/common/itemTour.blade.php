@@ -42,10 +42,10 @@
             @if($number-$tour->t_follow<2 && $tour->t_number_registered!=$tour->t_number_guests)
             <a style="color:red"> sắp hết </a>
             @endif
-            {{--<ul>--}}
-            {{--<li><i class="fa fa-user" aria-hidden="true"></i> 2</li>--}}
-            {{--<li><i class="fa fa-user" aria-hidden="true"></i> 3</li>--}}
-            {{--</ul>--}}
+            <ul>
+            <li><i class="fa fa-user" aria-hidden="true"></i> 2</li>
+            <li><i class="fa fa-user" aria-hidden="true"></i> 3</li>
+            </ul>
         </div>
     </div>
 </div>
