@@ -90,8 +90,8 @@ class LoginController extends Controller
 
             $user = User::where('email', $googleUser->email)->first();
             if ($user) {
-                \auth()->login($googleUser);
-                throw new \Exception(__('google sign in email existed'));
+                Auth::guard('users')->attempt(['email' => $user->email, 'password' => '12345678']);
+                return redirect()->route('page.home')->with('success', 'Đăng nhập thành công.');
             }
             $user = User::create(
                 [
