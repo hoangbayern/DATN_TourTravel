@@ -173,4 +173,5 @@ Route::group(['namespace' => 'Page'], function() {
     Route::get('/ve-chung-toi.html', 'HomeController@about')->name('about.us');
     Route::get('/lien-he.html', 'HomeController@contact')->name('contact.index');
     Route::get('/dia-diem/{id}/{slug}', 'LocationController@index')->name('location');
+    Route::post('/contact', 'HomeController@contactForm')->name('contact.form');
 });
