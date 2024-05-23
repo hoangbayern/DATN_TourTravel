@@ -1,21 +1,6 @@
 @extends('page.layouts.page')
 @section('title', 'Tours - Tin tức Du lịch - Thông tin Du lịch, Tin tức Du Lịch Việt Nam 2021')
 @section('style')
-    <style>
-        .no-tours {
-            text-align: center;
-            font-size: 65px;
-            color: #555;
-            margin: 50px 0;
-        }
-        .no-tours p {
-            margin-bottom: 20px;
-        }
-        .no-tours a {
-            color: #007bff;
-            text-decoration: underline;
-        }
-    </style>
 @stop
 @section('content')
     <section class="hero-wrap" style="background-image: url({{ asset('/page/images/bg_1.jpg') }}); height: 200px">
@@ -55,7 +40,7 @@
                 <div class="col-lg-9">
                     @if($tours->count() > 0)
                         @foreach($tours as $tour)
-                            @include('page.common.itemTour', compact('tour'))
+                            @include('page.common.itemTourNew', compact('tour'))
                         @endforeach
                     @else
                         <div class="text-center no-tours">
