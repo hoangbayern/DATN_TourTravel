@@ -82,7 +82,7 @@
             </div>
             <div class="row block-9">
                 <div class="col-md-6 order-md-last d-flex">
-                    <form action="#" method="POST" class="bg-light p-5 contact-form">
+                    <form action="{{ route('contact.form') }}" method="POST" class="bg-light p-5 contact-form">
                         @csrf
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" placeholder="Họ và tên" required>

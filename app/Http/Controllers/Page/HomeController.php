@@ -8,7 +8,7 @@ use App\Models\Location;
 use App\Models\Tour;
 use App\Models\Article;
 use App\Models\Comment;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -37,6 +37,25 @@ class HomeController extends Controller
     public function contact()
     {
         return view('page.contact.index');
+    }
+
+    public function contactForm(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Send email
+        Mail::send('emailcontact', compact('validatedData'), function ($message) use ($validatedData) {
+            $message->to(env('MAIL_FROM_ADDRESS'))
+                ->subject($validatedData['subject']);
+        });
+
+        return redirect()->back()->with('success', 'Tin nhắn của bạn đã được gửi thành công!');
     }
 
     public function about()

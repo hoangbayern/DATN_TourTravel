@@ -16,7 +16,7 @@
             text-align: center;
             border-radius: 4px;
             position: fixed;
-            bottom: 30px;
+            bottom: 130px;
             right: 30px;
             transition: background-color .3s,
             opacity .5s, visibility .5s;
@@ -53,6 +53,20 @@
     @include('page.common.script')
 
     <a id="button"></a>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/664ec9a0981b6c5647737837/1huhs77e6';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 <!-- Messenger Plugin chat Code -->
 {{--<div id="fb-root"></div>--}}
