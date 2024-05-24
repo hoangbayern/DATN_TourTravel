@@ -42,15 +42,22 @@
                                     <?php $number = $tour->t_number_guests - $tour->t_number_registered ?>
                                 <div class="mda-box-price">
                                     <div class="mda-lb">
-                                        <span>Số chỗ : {{ $tour->t_number_guests  }} - Còn trống: {{  $number  }} </span>
+                                        <span><span class="fa fa-user"> Số chỗ : {{ $tour->t_number_guests  }} - Còn trống: {{  $number  }}</span></span>
                                     </div>
                                     <p class="mda-box-p">
-                                        <span class="mda-price"><span class="mda-money-red">4,299,000 đ</span></span>
+                                        <span><span class="fa fa-user"> Đã xác nhận: {{ $tour->t_number_registered }}</span></span>
                                     </p>
+                                    @if($tour->t_number_registered<$tour->t_number_guests)
+
+                                        <a style="color: #3c3b3b; font-size: 14px; margin-right: 102px"><span class="fa fa-user"></span> Số người đang đăng ký: {{ $tour->t_follow  }} </a>
+                                    @endif
+                                    @if($number-$tour->t_follow<2 && $tour->t_number_registered!=$tour->t_number_guests)
+                                        <a style="color:red">Sắp hết </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="linkTo">
-                                <a href="https://dulichviet.com.vn/du-lich-trong-nuoc/du-lich-buon-ma-thuot-pleiku-kon-tum-khu-du-lich-mang-den-tu-sai-gon-gia-tot?idschedule=100152" title="Du lịch Buôn Ma Thuột - Pleiku - Kon Tum khu du lịch Măng Đen từ Sài Gòn giá tốt 2024"><span>Chi tiết</span></a>
+                                <a href="{{ route('tour.detail', ['id' => $tour->id, 'slug' => safeTitle($tour->t_title)]) }}"><span>Chi tiết</span></a>
                             </div>
                         </div>
                     </div>

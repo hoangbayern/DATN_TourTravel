@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Page;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Tour;
@@ -17,6 +18,7 @@ class TourController extends Controller
     public function index(Request $request)
     {
         $tours = Tour::with('user');
+        $locations = Location::all();
 
         if ($request->key_tour) {
             $tours->where('t_title', 'like', '%' . $request->key_tour . '%');
@@ -45,7 +47,8 @@ class TourController extends Controller
             ->paginate(NUMBER_PAGINATION_PAGE);
 
         $viewData = [
-            'tours' => $tours
+            'tours' => $tours,
+            'locations' => $locations,
         ];
         return view('page.tour.index', $viewData);
     }
