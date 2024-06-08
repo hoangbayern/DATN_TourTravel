@@ -43,7 +43,7 @@
                             @include('page.common.itemTourNew', compact('tour'))
                         @endforeach
                     @else
-                        <div class="text-center no-tours">
+                        <div class="text-center no-tours_location">
                             <p>Hiện tại không có Tour nào phù hợp với tìm kiếm của bạn.</p>
                             <p>Hãy thử thay đổi tiêu chí tìm kiếm hoặc <a href="{{ route('page.home') }}">quay lại trang chủ</a> để khám phá thêm nhiều thông tin thú vị khác.</p>
                             <p>Nếu bạn cần hỗ trợ, vui lòng <a href="{{ route('contact.index') }}">liên hệ với chúng tôi</a>.</p>
