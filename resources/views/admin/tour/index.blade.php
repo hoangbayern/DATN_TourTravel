@@ -7,8 +7,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"> <i class="nav-icon fas fa fa-home"></i> Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('tour.index') }}">Bài viết</a></li>
-                        <li class="breadcrumb-item active">Danh sách</li>
+                        <li class="breadcrumb-item"><a href="{{ route('tour.index') }}">Danh sách Tour</a></li>
                     </ol>
                 </div>
             </div>
@@ -85,6 +84,11 @@
                                     @if (!$tours->isEmpty())
                                         @php $i = $tours->firstItem(); @endphp
                                         @foreach($tours as $tour)
+                                            @php
+                                                $currentDate = \Carbon\Carbon::now();
+                                                $endDate = \Carbon\Carbon::parse($tour->t_end_date);
+                                                $tourStatus = $endDate < $currentDate ? 3 : 1;
+                                            @endphp
                                             <tr>
                                                 <td class=" text-center" style="vertical-align: middle;">{{ $i }}</td>
                                                 <td style="vertical-align: middle; width: 20%" class="title-content">
@@ -113,7 +117,7 @@
                                                     <p><b>Ngày đi :</b> {{ $tour->t_start_date }}</p>
                                                     <p><b>Ngày về :</b> {{ $tour->t_end_date }}</p>
                                                 </td>
-                                                <td class=" text-center" style="vertical-align: middle;">{{ $status[$tour->t_status] }}</td>
+                                                <td class=" text-center" style="vertical-align: middle;">{{ $status[$tourStatus] }}</td>
                                                 <td class="text-center" style="vertical-align: middle;">
                                                     <a class="btn btn-primary btn-sm" href="{{ route('tour.update', $tour->id) }}">
                                                         <i class="fas fa-pencil-alt"></i>

@@ -99,14 +99,14 @@ class AccountController extends Controller
     public function myTour()
     {
         $user = Auth::guard('users')->user();
-        $bookTours = BookTour::with(['tour'])->where('b_user_id', $user->id)->orderByDesc('id')->paginate(NUMBER_PAGINATION_PAGE);
+        $bookTours = BookTour::with(['tour'])->where('b_user_id', $user->id)->where('b_status','!=', 5)->orderByDesc('id')->paginate(NUMBER_PAGINATION_PAGE);
         return view('page.auth.my_tour', compact('bookTours'));
     }
 
     public function updateStatus(Request $request, $status, $id)
     {
         $bookTour = BookTour::find($id);
-        $numberUser = $bookTour->b_number_adults + $bookTour->b_number_children;
+        $numberUser = $bookTour->b_number_adults + $bookTour->b_number_children + $bookTour->b_number_child6 + $bookTour->b_number_child2;
         if (!$bookTour) {
             return redirect()->back()->with('error', 'Dữ liệu không tồn tại');
         }
@@ -118,8 +118,8 @@ class AccountController extends Controller
                 if ($bookTour->save()) {
                     if ($status == 5 ) {
                         $tour = Tour::find($bookTour->b_tour_id);
-                        $numberRegistered = $tour->t_number_registered - $numberUser;
-                        $tour->t_number_registered = $numberRegistered > 0 ? $numberRegistered : 0;
+                        $numberRegistered = $tour->t_follow - $numberUser;
+                        $tour->t_follow = $numberRegistered > 0 ? $numberRegistered : 0;
                         $tour->save();
 
                     }

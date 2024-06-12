@@ -29,7 +29,107 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.home.index');
+        $user = User::count();
+        $article = Article::count();
+        $bookTour = BookTour::count();
+        $tour = Tour::count();
+
+        // Thống kê trạng thái đơn hàng
+        // Tiep nhan
+        $transactionDefault = BookTour::where('b_status',1)->count();
+        // Đã xác nhận
+        $transactionProcess = BookTour::where('b_status',2)->count();
+        // Thành công
+        $transactionSuccess = BookTour::where('b_status',3)->count();
+        // kết thúc
+        $transactionFinish = BookTour::where('b_status',4)->count();
+        //Cancel
+        $transactionCancel = BookTour::where('b_status',5)->count();
+
+        $statusTransaction = [
+            [
+                'Tiếp nhận' , $transactionSuccess, false
+            ],
+            [
+                'Đã xác nhận' , $transactionProcess, false
+            ],
+            [
+                'Đã thanh toán' , $transactionDefault, false
+            ],
+            [
+                'Đã kết thúc' , $transactionFinish, false
+            ],
+            [
+                'Huỷ bỏ' , $transactionCancel, false
+            ]
+        ];
+
+        $month = $request->select_month ? $request->select_month : date('m');
+        $year = $request->select_year ? $request->select_year : date('Y');
+        $listDay = Date::getListDayInMonth($month, $year);
+
+        //Thống kê số lượng người lớn hàng đặt tour
+        $revenueTransactionMonth = BookTour::whereMonth('created_at', $month)->whereYear('created_at', $year)
+            ->select(\DB::raw('sum(b_number_adults) as totalMoney'), \DB::raw('DATE(created_at) day'))
+            ->groupBy('day')
+            ->get()->toArray();
+
+        // Thống kê khối lượng trẻ em đặt tour
+        $revenueTransactionMonthDefault = BookTour::whereMonth('created_at', $month)->whereYear('created_at', $year)
+            ->select(\DB::raw('(sum(b_number_children)+sum(b_number_child6)+sum(b_number_child2)) as totalMoney'), \DB::raw('DATE(created_at) day'))
+            ->groupBy('day')
+            ->get()->toArray();
+        //thống kê doanh thu
+        $money = BookTour::where('b_status',3)->whereMonth('created_at', $month)->whereYear('created_at', $year)
+            ->select(\DB::raw('(sum(b_price_adults*b_number_adults)+sum(b_price_children*b_number_children)+sum(b_price_child6*b_number_child6)+sum(b_price_child2*b_number_child2)) as totalMoney'), \DB::raw('DATE(created_at) day'))
+            ->groupBy('day')
+            ->get()->toArray();
+        $arrmoney = [];
+        $arrRevenueTransactionMonth = [];
+        $arrRevenueTransactionMonthDefault = [];
+        foreach($listDay as $day) {
+            $total = 0;
+            foreach ($revenueTransactionMonth as $key => $revenue) {
+                if ($revenue['day'] ==  $day) {
+                    $total = $revenue['totalMoney'];
+                    break;
+                }
+            }
+
+            $arrRevenueTransactionMonth[] = (int)$total;
+
+            $total = 0;
+            foreach ($revenueTransactionMonthDefault as $key => $revenue) {
+                if ($revenue['day'] ==  $day) {
+                    $total = $revenue['totalMoney'];
+                    break;
+                }
+            }
+            $arrRevenueTransactionMonthDefault[] = (int)$total;
+
+            $total = 0;
+            foreach ($money as $key => $revenue) {
+                if ($revenue['day'] ==  $day) {
+                    $total = $revenue['totalMoney'];
+                    break;
+                }
+            }
+            $arrmoney[] = (int)$total;
+        }
+        $tours = Tour::orderByDesc('t_follow')->limit(3)->get();
+        $viewData = [
+            'user' => $user,
+            'article' => $article,
+            'bookTour' => $bookTour,
+            'tour' => $tour,
+            'tours' => $tours,
+            'statusTransaction'          => json_encode($statusTransaction),
+            'listDay'                    => json_encode($listDay),
+            'arrRevenueTransactionMonth' => json_encode($arrRevenueTransactionMonth),
+            'arrRevenueTransactionMonthDefault' => json_encode($arrRevenueTransactionMonthDefault),
+            'arrmoney' => json_encode($arrmoney),
+        ];
+        return view('admin.home.index', $viewData);
     }
 
     /**

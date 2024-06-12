@@ -91,7 +91,7 @@
             <p>Địa chỉ: <b>{{ $user->address }}</b></p>
         </div>
         <div class="highlight">
-            <p>Người lớn: <b>{{ $book->b_number_adults }}</b> Trẻ em: <b>{{ $book->b_number_children }}</b></p>
+            <p>Người lớn: <b>{{ $book->b_number_adults }}</b> Trẻ em: <b>{{ $book->b_number_children + $book->b_number_child6 + $book->b_number_child2 }}</b></p>
         </div>
     </div>
 </div>

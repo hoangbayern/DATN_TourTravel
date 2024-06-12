@@ -119,13 +119,13 @@
                                                 <p><b>Phone</b>: {{ $book->b_phone }}</p>
                                                 <p><b>Địa chỉ</b>: {{ $book->user->address }}</p>
                                             </td>
-                                            <td style="vertical-align: middle; width: 35%" class="title-content">                                            
+                                            <td style="vertical-align: middle; width: 35%" class="title-content">
                                                 <p><b>Số người lớn</b>: {{ $book->b_number_adults }} - <b>Thành tiền</b>: {{ number_format($book->b_number_adults*$book->b_price_adults, 0,',','.') }} vnd</p>
                                                 <p><b>Số trẻ em</b>: {{ $book->b_number_children }} - <b>Thành tiền</b>: {{ number_format($book->b_number_children*$book->b_price_children, 0,',','.') }} vnd</p>
                                                 <p><b>Số trẻ em (2-6 tuổi) :</b> {{ $book->b_number_child6 }} - <b>Thành tiền</b>: {{ number_format($book->b_number_child6*$book->b_price_child6, 0,',','.') }} vnd</p>
                                             <p><b>Số trẻ em (dưới 2 tuổi) :</b> {{ $book->b_number_child2 }} - <b>Thành tiền</b>: {{ number_format($book->b_number_child2*$book->b_price_child2, 0,',','.') }} vnd</p>
 
-                                                
+
                                                 @php
                                                     $totalPrice = ($book->b_number_adults*$book->b_price_adults) + ($book->b_number_children*$book->b_price_children)+ ($book->b_number_child6*$book->b_price_child6)+ ($book->b_number_child2*$book->b_price_child2)
                                                 @endphp
