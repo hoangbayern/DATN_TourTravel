@@ -116,7 +116,7 @@ class HomeController extends Controller
             }
             $arrmoney[] = (int)$total;
         }
-        $tours = Tour::orderByDesc('t_follow')->limit(3)->get();
+        $tours = Tour::orderByDesc('t_number_registered')->limit(3)->get();
         $viewData = [
             'user' => $user,
             'article' => $article,

@@ -95,14 +95,14 @@
                                 <tr style="height: 17px;">
                                     <td style="width: 33.3333%; text-align: center; height: 17px;"><strong><em>Mã Tour</em></strong></td>
                                     <td style="width: 33.3333%; text-align: center; height: 17px;"><strong><em>Tên tour</em></strong></td>
-                                    <td style="width: 33.3333%; text-align: center; height: 17px;"><strong><em>Lượt đăng ký</em></strong></td>
+                                    <td style="width: 33.3333%; text-align: center; height: 17px;"><strong><em>Lượt xác nhận</em></strong></td>
                                 </tr>
                                 @foreach($tours as $tour)
 
                                     <tr style="height: 17px;">
                                         <td style="width: 33.3333%; text-align: center; height: 17px;">{{$tour->id}}</td>
                                         <td style="width: 33.3333%; text-align: center; height: 17px;">{{$tour->t_title}}</td>
-                                        <td style="width: 33.3333%; text-align: center; height: 17px;">{{$tour->t_follow}}</td>
+                                        <td style="width: 33.3333%; text-align: center; height: 17px;">{{$tour->t_number_registered}}</td>
                                     </tr>
 
 

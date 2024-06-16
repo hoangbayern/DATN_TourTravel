@@ -140,13 +140,13 @@
                                             @if(Auth::user()->can(['full-quyen-quan-ly', 'xoa-va-cap-nhat-trang-thai']))
                                             <td style="vertical-align: middle; width: 17%">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-success btn-sm">Action</button>
+                                                    <button type="button" class="btn btn-success btn-sm">Trạng thái</button>
                                                     <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                         <span class="caret"></span>
                                                         <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <ul class="dropdown-menu action-transaction" role="menu">
-                                                        <li><a href="{{ route('book.tour.delete', $book->id) }}" class="btn-confirm-delete"><i class="fa fa-trash"></i>  Delete</a></li>
+{{--                                                        <li><a href="{{ route('book.tour.delete', $book->id) }}" class="btn-confirm-delete"><i class="fa fa-trash"></i>  Delete</a></li>--}}
                                                         @foreach($status as $key => $item)
                                                             <li class="update_book_tour" url='{{ route('book.tour.update.status', ['status' => $key, 'id' => $book->id]) }}'><a><i class="fas fa-check"></i>  {{ $item }}</a></li>
                                                         @endforeach

@@ -62,7 +62,7 @@
             <div class="row block-9">
                 <div class="col-md-6 order-md-last">
                     <p></p>
-                    <form action="{{ route('post.book.tour', $tour->id) }}" method="post" class="bg-light p-5 contact-form">
+                    <form id="booking-form" action="#" method="post" class="bg-light p-5 contact-form">
                         @csrf
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Họ và tên <sup class="text-danger">(*)</sup></label>
@@ -101,7 +101,7 @@
                         </div> -->
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Số người lớn <sup class="text-danger">(*)</sup></label>
-                            <input type="number" name="b_number_adults" class="form-control" placeholder="Số người lớn">
+                            <input type="number"  min="0" value="0" name="b_number_adults" class="form-control" placeholder="Số người lớn">
                             @if ($errors->first('b_number_adults'))
                                 <span class="text-danger">{{ $errors->first('b_number_adults') }}</span>
                             @endif
@@ -130,6 +130,18 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Ghi chú</label>
                             <textarea name="b_note"  placeholder="Thông tin chi tiết để chúng tôi liên hệ nhanh chóng..." id="message" cols="20" rows="5" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">Hình thức thanh toán <sup class="text-danger">(*)</sup></label>
+                            <div>
+                                <label><input type="radio" name="payUrl" id="direct_payment" value="direct" checked> Thanh toán trực tiếp</label>
+                            </div>
+                            <div>
+                                <label><input type="radio" name="payUrl" id="momo_payment" value="momo"> Thanh toán qua MoMo</label>
+                            </div>
+                            @if ($errors->first('payment_method'))
+                                <span class="text-danger">{{ $errors->first('payment_method') }}</span>
+                            @endif
                         </div>
                         <div class="col-md-12 text-center">
                             <div class="form-group">
@@ -191,6 +203,18 @@
         $t.text($b*$a);
     })
 </script>
+        <script>
+            document.getElementById('booking-form').addEventListener('submit', function (e) {
+                var directPaymentRadio = document.getElementById('direct_payment');
+                var form = e.target;
+
+                if (directPaymentRadio.checked) {
+                    form.action = "{{ route('post.book.tour', $tour->id) }}";
+                } else {
+                    form.action = "{{ route('post.book.tour.momo', $tour->id) }}";
+                }
+            });
+        </script>
     </section>
 @stop
 @section('script')

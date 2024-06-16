@@ -165,6 +165,8 @@ Route::group(['namespace' => 'Page'], function() {
     Route::get('/tour.html', 'TourController@index')->name('tour');
     Route::get('book-tour/{id}/{slug}.html', 'TourController@bookTour')->name('book.tour');
     Route::post('book/tour/{id}', 'TourController@postBookTour')->name('post.book.tour');
+    Route::post('book/tour/momo/{id}', 'TourController@bookTourMomo')->name('post.book.tour.momo');
+    Route::get('/momo/callback/{id}', 'TourController@handleMomoCallback')->name('momo.callback');
     Route::get('/tour/{id}/{slug}.html', 'TourController@detail')->name('tour.detail');
     Route::post('/comment', 'CommentController@comment')->name('comment');
     Route::get('/error', 'TourController@loi')->name('loi.loi');
