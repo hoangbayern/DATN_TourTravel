@@ -92,6 +92,14 @@ class TourController extends Controller
             return redirect()->back()->with('error', 'Số lượng người đăng ký đã vượt quá giới hạn');
         }
 
+        if ($request->b_number_adults == 0 && $request->b_number_children == 0 && $request->b_number_child6 == 0 && $request->b_number_child2 ==0) {
+            return redirect()->back()->with('error', 'Nhập số lượng người đi');
+        }
+
+        if ($request->b_number_adults == 0 && ($request->b_number_children > 0 || $request->b_number_child6 > 0 || $request->b_number_child2 > 0)) {
+            return redirect()->back()->with('error', 'Trẻ nhỏ phải kèm người lớn đi cùng');
+        }
+
         \DB::beginTransaction();
         try {
             $params = $request->except(['_token']);
@@ -153,6 +161,14 @@ class TourController extends Controller
 
         if (($tour->t_number_registered + $numberUser) > $tour->t_number_guests) {
             return redirect()->back()->with('error', 'Số lượng người đăng ký đã vượt quá giới hạn');
+        }
+
+        if ($request->b_number_adults == 0 && $request->b_number_children == 0 && $request->b_number_child6 == 0 && $request->b_number_child2 ==0) {
+            return redirect()->back()->with('error', 'Nhập số lượng người đi');
+        }
+
+        if ($request->b_number_adults == 0 && ($request->b_number_children > 0 || $request->b_number_child6 > 0 || $request->b_number_child2 > 0)) {
+            return redirect()->back()->with('error', 'Trẻ nhỏ phải kèm người lớn đi cùng');
         }
 
         // Calculate prices
